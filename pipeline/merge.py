@@ -26,6 +26,7 @@ Confidence model (0-1 per field, then averaged for overall_confidence):
 
 import re
 import uuid
+from datetime import date, datetime
 
 from . import normalize as N
 
@@ -56,22 +57,117 @@ def _norm_key(s):
     return re.sub(r"\s+", " ", (s or "").strip().lower())
 
 
+def _is_name_match(n1, n2):
+    """
+    Fuzzy match logic for names. Returns True if last names match exactly AND:
+    - First names match exactly, OR
+    - One first name is a prefix of the other (e.g. 'Alex' matches 'Alexander', min 3 chars).
+    """
+    if not n1 or not n2:
+        return False
+    n1_parts = n1.split()
+    n2_parts = n2.split()
+    if len(n1_parts) < 2 or len(n2_parts) < 2:
+        return n1 == n2
+    # Last name exact match
+    if n1_parts[-1] != n2_parts[-1]:
+        return False
+    f1, f2 = n1_parts[0], n2_parts[0]
+    if f1 == f2:
+        return True
+    if len(f1) >= 3 and len(f2) >= 3:
+        if f1.startswith(f2) or f2.startswith(f1):
+            return True
+    return False
+
+
+def calculate_years_experience(experience_list):
+    """
+    Sum the lengths of non-overlapping experience intervals.
+    Each exp entry should have 'start' (YYYY-MM) and 'end' (YYYY-MM).
+    """
+    if not experience_list:
+        return 0.0
+
+    intervals = []
+    today = date.today()
+
+    for exp in experience_list:
+        start_str = exp.get("start")
+        end_str = exp.get("end")
+
+        if not start_str and not end_str:
+            continue
+
+        try:
+            if start_str:
+                dt_start = datetime.strptime(start_str, "%Y-%m").date()
+            else:
+                dt_start = today
+
+            if end_str:
+                dt_end = datetime.strptime(end_str, "%Y-%m").date()
+            else:
+                dt_end = today
+
+            if dt_start > dt_end:
+                dt_start, dt_end = dt_end, dt_start
+
+            intervals.append((dt_start, dt_end))
+        except Exception:
+            continue
+
+    if not intervals:
+        return 0.0
+
+    # Sort and merge overlaps
+    intervals.sort(key=lambda x: x[0])
+    merged = []
+    for current in intervals:
+        if not merged:
+            merged.append(current)
+        else:
+            prev_start, prev_end = merged[-1]
+            curr_start, curr_end = current
+
+            if curr_start <= prev_end:
+                merged[-1] = (prev_start, max(prev_end, curr_end))
+            else:
+                merged.append(current)
+
+    total_months = 0
+    for start, end in merged:
+        diff_months = (end.year - start.year) * 12 + (end.month - start.month) + 1
+        total_months += max(1, diff_months)
+
+    return round(total_months / 12.0, 1)
+
+
 def match_records(raw_records):
     """Group raw records into per-candidate buckets using email, falling
-    back to normalized name. Returns list of {"records": [...]} groups."""
+    back to fuzzy name matching. Returns list of {"records": [...]} groups."""
     buckets = []
     by_email = {}
-    by_name = {}
 
     for rec in raw_records:
         email = N.normalize_email(rec.get("email"))
         name_key = _norm_key(rec.get("full_name"))
 
         bucket = None
+        # 1. First check by email
         if email and email in by_email:
             bucket = by_email[email]
-        elif name_key and name_key in by_name:
-            bucket = by_name[name_key]
+        # 2. Check by name fuzzy match fallback
+        elif name_key:
+            for b in buckets:
+                # Find if any record in the bucket matches the name fuzzily
+                for existing_rec in b["records"]:
+                    existing_name = _norm_key(existing_rec.get("full_name"))
+                    if existing_name and _is_name_match(name_key, existing_name):
+                        bucket = b
+                        break
+                if bucket:
+                    break
 
         if bucket is None:
             bucket = {"records": []}
@@ -80,8 +176,6 @@ def match_records(raw_records):
         bucket["records"].append(rec)
         if email:
             by_email[email] = bucket
-        if name_key:
-            by_name[name_key] = bucket
 
     return buckets
 
@@ -231,7 +325,7 @@ def merge_candidate(records):
     canonical.setdefault("experience", canonical.get("experience", []))
     canonical.setdefault("education", canonical.get("education", []))
     canonical.setdefault("location", None)
-    canonical.setdefault("years_experience", None)
+    canonical["years_experience"] = calculate_years_experience(canonical.get("experience", []))
     canonical.setdefault("headline", canonical.get("headline"))
     canonical.setdefault("full_name", canonical.get("full_name") or "Unknown")
 

@@ -257,3 +257,29 @@ def test_merge_all_six_sources():
     
     # High confidence because we matched on reliable sources
     assert alex["overall_confidence"] >= 0.8
+
+
+def test_calculate_years_experience():
+    from pipeline.merge import calculate_years_experience
+    # 2020-01 to 2021-12 is 24 months. 
+    # 2021-06 to 2022-06 is 13 months, but overlaps by 7 months (2021-06 to 2021-12).
+    # Total merged interval: 2020-01 to 2022-06 (30 months = 2.5 years)
+    exp_list = [
+        {"start": "2020-01", "end": "2021-12"},
+        {"start": "2021-06", "end": "2022-06"},
+    ]
+    years = calculate_years_experience(exp_list)
+    assert years == 2.5
+
+
+def test_fuzzy_name_matching():
+    # Merge records that have nickname variations of the same name and no emails
+    raw = [
+        {"source": "resume", "full_name": "Alexander Mercer"},
+        {"source": "recruiter_csv", "full_name": "Alex Mercer"}
+    ]
+    profiles = merge_all(raw)
+    assert len(profiles) == 1
+    # recruiter_csv has higher trust, so "Alex Mercer" wins
+    assert profiles[0]["full_name"] == "Alex Mercer"
+
