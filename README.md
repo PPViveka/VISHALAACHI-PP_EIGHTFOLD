@@ -1,7 +1,5 @@
 # Multi-Source Candidate Data Transformer
 
-Eightfold Engineering Intern (Jul–Dec 2026) — Assignment submission.
-
 Ingests, merges, and projects candidate data from **six distinct structured, semi-structured, and unstructured sources** into a single canonical profile per candidate. Features automatic conflict resolution, field-level provenance tracking, weighted confidence scoring, and a runtime configuration engine that reshapes output structures dynamically.
 
 ## Supported Input Sources
