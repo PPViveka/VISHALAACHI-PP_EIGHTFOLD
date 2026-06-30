@@ -2,12 +2,19 @@
 
 Eightfold Engineering Intern (Jul–Dec 2026) — Assignment submission.
 
-Merges candidate data from a **Recruiter CSV export** (structured) and a
-**Resume file** (.docx/.pdf/.txt, unstructured) into one canonical JSON
-profile per candidate, with provenance and confidence on every field, and
-a runtime config that reshapes the output without touching the engine.
+Ingests, merges, and projects candidate data from **six distinct structured, semi-structured, and unstructured sources** into a single canonical profile per candidate. Features automatic conflict resolution, field-level provenance tracking, weighted confidence scoring, and a runtime configuration engine that reshapes output structures dynamically.
 
-## Pipeline
+## Supported Input Sources
+1. **Recruiter CSV Export (Structured)**: High-trust database records containing candidate names and contact info.
+2. **ATS JSON Export (Semi-Structured)**: Standard database dump matching candidate details using dynamic key mapping.
+3. **Resume Document (Unstructured)**: Parses PDF, DOCX, and TXT files using regular expressions and layout heuristics.
+4. **Recruiter Notes (Unstructured)**: Extracts contact details, current role, and skills from free-text recruiter logs.
+5. **GitHub Profile URL (API integration)**: Queries the public GitHub REST API to fetch profiles, bios, and repository programming languages as skills (with offline test caches).
+6. **LinkedIn Profile URL (Simulated)**: Ingests mock professional profiles mapping experience and education.
+
+---
+
+## Pipeline Architecture
 
 ```
 detect -> extract -> normalize -> merge -> confidence -> project -> validate
@@ -15,15 +22,15 @@ detect -> extract -> normalize -> merge -> confidence -> project -> validate
 
 | Stage | File | What it does |
 |---|---|---|
-| detect | `pipeline/extract.py: detect_source` | Picks a parser by file extension |
-| extract | `pipeline/extract.py` | CSV rows -> dicts; resume text -> regex-extracted fields. Never invents missing values. |
-| normalize | `pipeline/normalize.py` | Phones -> E.164, dates -> `YYYY-MM`, skills -> canonical names, country -> ISO-3166 alpha-2 |
-| merge + confidence | `pipeline/merge.py` | Matches candidates across sources (email, fallback to name), resolves conflicts by source trust, scores each field |
-| project | `pipeline/project.py` | Applies the runtime config: field selection, renaming (`from`), normalization, `on_missing` policy |
-| validate | `pipeline/validate.py` | Builds a JSON Schema from the config and validates the projected output (never raises — returns errors) |
+| **detect** | `pipeline/extract.py: detect_source` | Automatically resolves parser type by file extension or name |
+| **extract** | `pipeline/extract.py` | Extracts raw records from all 6 sources (gracefully degrading on malformed inputs) |
+| **normalize** | `pipeline/normalize.py` | Normalizes phone numbers (E.164), dates (`YYYY-MM`), skills (alias mapping), and names |
+| **merge** | `pipeline/merge.py` | Deduplicates and matches records (emails, falling back to fuzzy name matching) |
+| **confidence** | `pipeline/merge.py` | Scores fields based on source trust (5=CSV to 0=Notes) and applies overlap/disagreement penalties |
+| **project** | `pipeline/project.py` | Reshapes output canonical profiles into target JSON objects based on the runtime config |
+| **validate** | `pipeline/validate.py` | Generates a JSON Schema dynamically on the fly matching the runtime config, returning error lists |
 
-See `docs/Design_Write_up.pdf` for the full design write-up
-(merge policy, confidence model, edge cases, scope cuts).
+---
 
 ## Setup
 
@@ -31,86 +38,59 @@ See `docs/Design_Write_up.pdf` for the full design write-up
 pip install -r requirements.txt
 ```
 
-## Run
+---
 
-Default schema (full canonical profile, confidence + provenance included):
+## CLI Execution
 
+Run the end-to-end pipeline with the default configuration (canonical profile, confidence, and provenance included):
 ```bash
-python cli.py --csv sources/recruiter.csv --resume sources/resume_candidate.docx \
+python cli.py --csv sources/sample_recruiter_large.csv --resume sources/resume_candidate.docx \
+  --ats sources/sample_ats_large.json --notes sources/notes_nina_chen.txt \
+  --github alexmercer --linkedin https://linkedin.com/in/alex-mercer \
   --out sample_output/default_output.json
 ```
 
-Custom config (subset of fields, renamed, no provenance):
-
+Run with custom config (subset of fields, renamed, no provenance):
 ```bash
-python cli.py --csv sources/recruiter.csv --resume sources/resume_candidate.docx \
+python cli.py --csv sources/sample_recruiter_large.csv --resume sources/resume_candidate.docx \
+  --ats sources/sample_ats_large.json --notes sources/notes_nina_chen.txt \
+  --github alexmercer --linkedin https://linkedin.com/in/alex-mercer \
   --config config/custom_config.json --out sample_output/custom_output.json
 ```
 
-Omit `--out` to print JSON to stdout. Either `--csv` or `--resume` alone is
-fine — the pipeline degrades gracefully (lower confidence, fewer fields)
-rather than crashing when a source is missing.
+---
 
-## Web Dashboard
+## Interactive Web Dashboard
 
 To run the interactive web-based dashboard:
-
 ```bash
 python app.py
 ```
+Open **`http://localhost:5000`** in your browser.
 
-Then open `http://localhost:5000` in your web browser. The dashboard allows you to upload CSV/resume files, edit the projection config in real time, visualize the pipeline stages, inspect the canonical profiles, and see JSON schema validation results.
+### Key UI Features:
+* **Unified Drag & Drop Dropzone**: Drag and drop any combination of candidate files (CSV, JSON, DOCX, PDF, TXT) sequentially. Clear selected items using the red "x" delete button.
+* **Profile Links Accumulator Text Area**: Paste multiple profile URLs (GitHub/LinkedIn, one per line). The UI processes and submits them in batch.
+* **Glassmorphic Theme**: Dark mode design with animated pipeline steppers and side-by-side verification logs.
 
-## Tests
+---
 
+## Core Edge Cases Handled
+
+### 1. Overlapping Experience & Calendar Years Calculation
+* Summing the duration of all experience entries double-counts overlapping dates (e.g. holding two jobs concurrently in 2021). 
+* The pipeline integrates an interval-merging algorithm (`calculate_years_experience`) that sorts intervals, merges overlapping periods, and sums non-overlapping months, yielding a highly accurate years of experience score.
+
+### 2. Fuzzy Name & Nickname Matching
+* Matches candidates using nicknames or spelling variations (e.g. `Alexander Mercer` vs `Alex Mercer`) across sources when emails are missing.
+* Last names must match exactly, and first names must match or share a common prefix (minimum 3 characters), avoiding matching unrelated candidates (e.g., `John` and `Jane`).
+
+---
+
+## Automated Tests
+
+Run the test suite:
 ```bash
 pytest tests/ -v
 ```
-
-21 tests covering normalization edge cases (garbage phone numbers, invalid
-emails, "Present" as an end date), extraction robustness (missing files,
-blank CSV rows), merge matching/conflict handling, config projection
-(rename, omit, error-on-missing), and schema validation.
-
-## Sample data
-
-- `sources/recruiter.csv` — 3 rows: one clean, one with a malformed
-  email and no name (tests robustness), one clean but resume-less.
-- `sources/resume_candidate.docx` — matches the first CSV row by email, so
-  you can see cross-source merge + provenance + conflict resolution in
-  the output.
-- `sample_output/` — pre-generated output for both configs above.
-
-## Config format
-
-```json
-{
-  "fields": [
-    { "path": "full_name", "from": "full_name", "type": "string", "required": true },
-    { "path": "primary_email", "from": "emails[0]", "type": "string" },
-    { "path": "phone", "from": "phones[0]", "normalize": "E164" },
-    { "path": "top_skills", "from": "skills[].name", "normalize": "canonical" }
-  ],
-  "include_confidence": true,
-  "include_provenance": false,
-  "on_missing": "null"
-}
-```
-
-`from` supports dotted paths (`location.city`), array indices
-(`emails[0]`), and array-map (`skills[].name`). `on_missing` is
-`null` | `omit` | `error`.
-
-## Known limitations / deliberately out of scope
-
-- Matching is email-first, name-fallback — no fuzzy name matching
-  (e.g. nicknames, typos) or phone-based matching.
-- Resume parsing is regex/heuristic-based, not ML-based, so unusual
-  resume layouts will yield fewer extracted fields (degrades to fewer
-  fields, not wrong fields).
-- `years_experience` is not auto-computed from experience date ranges
-  in this cut (left as `null` unless a source provides it directly).
-- No ATS JSON / GitHub / LinkedIn parsers implemented (out of scope per
-  assignment: one structured + one unstructured source is sufficient),
-  but `pipeline/extract.py` is structured so adding `extract_ats_json`
-  or `extract_github` is a same-shaped function away.
+Contains **28 unit tests** covering normalization, extraction failures, multi-source merging, confidence scoring models, custom projections, dynamic schema compliance, name variations, and experience calculation.
