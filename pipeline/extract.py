@@ -158,8 +158,23 @@ def extract_resume(path):
     ):
         d = m.groupdict()
         edu_entries.append(d)
-    if edu_entries:
-        record["education_raw"] = edu_entries
+    # Certifications extraction
+    cert_match = re.search(
+        r"(?ims)^certifications?\s*[:\-]?\s*\n?(.+?)(?:\n\s*\n|\n[A-Z][a-zA-Z ]{2,20}\n|$)",
+        text
+    )
+    if cert_match:
+        tokens = re.split(r"[,|\n\u2022;]", cert_match.group(1))
+        record["certifications"] = [t.strip() for t in tokens if t.strip()]
+
+    # Languages extraction
+    lang_match = re.search(
+        r"(?ims)^(?:languages|languages spoken)\s*[:\-]?\s*\n?(.+?)(?:\n\s*\n|\n[A-Z][a-zA-Z ]{2,20}\n|$)",
+        text
+    )
+    if lang_match:
+        tokens = re.split(r"[,|\n\u2022;]", lang_match.group(1))
+        record["languages"] = [t.strip() for t in tokens if t.strip()]
 
     return record
 
@@ -249,19 +264,43 @@ def extract_github(username_or_url):
             "full_name": "Alex Mercer",
             "email": "alex.mercer@example.com",
             "headline": "Open-source contributor & backend developer",
-            "skills_raw": ["Python", "Go", "Docker", "SQL", "Git"]
+            "skills_raw": ["Python", "Go", "Docker", "SQL", "Git"],
+            "projects": [
+                {
+                    "name": "fastapi-boilerplate",
+                    "description": "High-performance template for APIs",
+                    "url": "https://github.com/alexmercer/fastapi-boilerplate",
+                    "primary_language": "Python"
+                }
+            ]
         },
         "johndoe": {
             "full_name": "John Doe",
             "email": "john.doe@example.com",
             "headline": "AI/ML Systems Enthusiast",
-            "skills_raw": ["Python", "TensorFlow", "Kubernetes", "PyTorch"]
+            "skills_raw": ["Python", "TensorFlow", "Kubernetes", "PyTorch"],
+            "projects": [
+                {
+                    "name": "mnist-neural-net",
+                    "description": "Custom neural network for digits from scratch",
+                    "url": "https://github.com/johndoe/mnist-neural-net",
+                    "primary_language": "Python"
+                }
+            ]
         },
         "janesmith": {
             "full_name": "Jane Smith",
             "email": "jane.smith@example.com",
             "headline": "Frontend developer focusing on React/TS",
-            "skills_raw": ["React", "JavaScript", "CSS", "HTML"]
+            "skills_raw": ["React", "JavaScript", "CSS", "HTML"],
+            "projects": [
+                {
+                    "name": "react-kanban-board",
+                    "description": "A beautiful Kanban board in React",
+                    "url": "https://github.com/janesmith/react-kanban-board",
+                    "primary_language": "JavaScript"
+                }
+            ]
         }
     }
     
@@ -294,12 +333,21 @@ def extract_github(username_or_url):
             repos_data = json.loads(resp_repos.read().decode())
             
         languages = set()
+        projects = []
         for repo in repos_data:
             lang = repo.get("language")
             if lang:
                 languages.add(lang)
+            projects.append({
+                "name": repo.get("name"),
+                "description": repo.get("description"),
+                "url": repo.get("html_url"),
+                "primary_language": repo.get("language")
+            })
         if languages:
             record["skills_raw"] = list(languages)
+        if projects:
+            record["projects"] = projects
             
     except Exception as e:
         record["error"] = f"GitHub API fetch failed: {str(e)}"

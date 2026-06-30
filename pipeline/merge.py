@@ -383,6 +383,47 @@ def merge_candidate(records):
             canonical["links"]["linkedin"] = rec["linkedin_url"]
             provenance.append({"field": "links.linkedin", "source": source, "method": "exact"})
 
+        # 11. Certifications
+        if rec.get("certifications"):
+            certs = rec["certifications"]
+            if isinstance(certs, str):
+                certs = [c.strip() for c in re.split(r"[,|\n\u2022;]", certs) if c.strip()]
+            canonical_certs = canonical.setdefault("certifications", [])
+            for c in certs:
+                if c not in canonical_certs:
+                    canonical_certs.append(c)
+            provenance.append({"field": "certifications", "source": source, "method": method})
+            confidences["certifications"] = 0.85 if is_structured else 0.6
+
+        # 12. Languages
+        if rec.get("languages"):
+            langs = rec["languages"]
+            if isinstance(langs, str):
+                langs = [l.strip() for l in re.split(r"[,|\n\u2022;]", langs) if l.strip()]
+            canonical_langs = canonical.setdefault("languages", [])
+            for l in langs:
+                l_norm = l.title().strip()
+                if l_norm not in canonical_langs:
+                    canonical_langs.append(l_norm)
+            provenance.append({"field": "languages", "source": source, "method": method})
+            confidences["languages"] = 0.85 if is_structured else 0.6
+
+        # 13. Projects
+        if rec.get("projects"):
+            projs = rec["projects"]
+            canonical_projs = canonical.setdefault("projects", [])
+            for p in projs:
+                exists = any(cp.get("name") == p.get("name") for cp in canonical_projs)
+                if not exists:
+                    canonical_projs.append({
+                        "name": p.get("name"),
+                        "description": p.get("description") or None,
+                        "url": p.get("url") or None,
+                        "primary_language": p.get("primary_language") or None
+                    })
+            provenance.append({"field": "projects", "source": source, "method": method})
+            confidences["projects"] = 0.9 if source == "github" else (0.85 if is_structured else 0.6)
+
     if emails:
         canonical["emails"] = emails
         confidences["emails"] = 0.95 if any(r.get("source") == "recruiter_csv" for r in records) else 0.85
@@ -395,6 +436,9 @@ def merge_candidate(records):
     if canonical["experience"]:
         canonical["experience"] = deduplicate_experiences(canonical["experience"])
     canonical.setdefault("education", canonical.get("education", []))
+    canonical.setdefault("certifications", [])
+    canonical.setdefault("languages", [])
+    canonical.setdefault("projects", [])
     canonical.setdefault("location", None)
     canonical["years_experience"] = calculate_years_experience(canonical.get("experience", []))
     canonical.setdefault("headline", canonical.get("headline"))

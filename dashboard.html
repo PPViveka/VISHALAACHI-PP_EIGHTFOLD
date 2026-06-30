@@ -1194,6 +1194,70 @@
             card.appendChild(tagsContainer);
           }
 
+          // Languages
+          if (profile.languages && profile.languages.length > 0) {
+            const langTitle = document.createElement("div");
+            langTitle.className = "section-title";
+            langTitle.textContent = "Languages";
+            card.appendChild(langTitle);
+
+            const tagsContainer = document.createElement("div");
+            tagsContainer.className = "skills-list";
+            profile.languages.forEach(lang => {
+              const tag = document.createElement("div");
+              tag.className = "skill-tag";
+              tag.style.borderColor = "rgba(16, 185, 129, 0.25)";
+              tag.style.background = "rgba(16, 185, 129, 0.05)";
+              tag.textContent = lang;
+              tagsContainer.appendChild(tag);
+            });
+            card.appendChild(tagsContainer);
+          }
+
+          // Certifications
+          if (profile.certifications && profile.certifications.length > 0) {
+            const certTitle = document.createElement("div");
+            certTitle.className = "section-title";
+            certTitle.textContent = "Certifications";
+            card.appendChild(certTitle);
+
+            const tagsContainer = document.createElement("div");
+            tagsContainer.className = "skills-list";
+            profile.certifications.forEach(cert => {
+              const tag = document.createElement("div");
+              tag.className = "skill-tag";
+              tag.style.borderColor = "rgba(245, 158, 11, 0.25)";
+              tag.style.background = "rgba(245, 158, 11, 0.05)";
+              tag.textContent = cert;
+              tagsContainer.appendChild(tag);
+            });
+            card.appendChild(tagsContainer);
+          }
+
+          // Projects
+          if (profile.projects && profile.projects.length > 0) {
+            const projTitle = document.createElement("div");
+            projTitle.className = "section-title";
+            projTitle.textContent = "Projects";
+            card.appendChild(projTitle);
+
+            const list = document.createElement("div");
+            list.className = "experience-list";
+            profile.projects.forEach(proj => {
+              const item = document.createElement("div");
+              item.className = "exp-item";
+              item.innerHTML = `
+                <div class="item-header">
+                  <div class="item-title">${proj.url ? `<a href="${proj.url}" target="_blank" style="color: var(--accent-color); text-decoration: none;">🚀 ${proj.name}</a>` : `🚀 ${proj.name}`}</div>
+                  ${proj.primary_language ? `<div class="item-dates" style="font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.2);">${proj.primary_language}</div>` : ''}
+                </div>
+                ${proj.description ? `<div class="item-summary">${proj.description}</div>` : ''}
+              `;
+              list.appendChild(item);
+            });
+            card.appendChild(list);
+          }
+
           // Experience
           if (profile.experience && profile.experience.length > 0) {
             const expTitle = document.createElement("div");

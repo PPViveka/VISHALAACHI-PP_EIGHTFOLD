@@ -308,3 +308,31 @@ def test_unicode_normalization():
     assert normalize_name(nfd_name) == normalize_name(nfc_name)
 
 
+def test_additional_canonical_fields():
+    from pipeline.merge import merge_all
+    raw_records = [
+        {
+            "source": "resume",
+            "full_name": "Zara Patel",
+            "certifications": ["AWS Solutions Architect", "Certified Scrum Master"],
+            "languages": ["English", "Hindi"],
+            "projects": [
+                {
+                    "name": "E-Commerce App",
+                    "description": "Built using React and Node",
+                    "url": "https://github.com/zarapatel/ecommerce",
+                    "primary_language": "JavaScript"
+                }
+            ]
+        }
+    ]
+    profiles = merge_all(raw_records)
+    assert len(profiles) == 1
+    p = profiles[0]
+    assert "AWS Solutions Architect" in p["certifications"]
+    assert "English" in p["languages"]
+    assert len(p["projects"]) == 1
+    assert p["projects"][0]["name"] == "E-Commerce App"
+
+
+

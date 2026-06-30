@@ -79,6 +79,26 @@ CANONICAL_SCHEMA = {
                 },
             },
         },
+        "certifications": {
+            "type": "array",
+            "items": {"type": "string"}
+        },
+        "languages": {
+            "type": "array",
+            "items": {"type": "string"}
+        },
+        "projects": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {"type": "string"},
+                    "description": {"type": ["string", "null"]},
+                    "url": {"type": ["string", "null"]},
+                    "primary_language": {"type": ["string", "null"]}
+                }
+            }
+        },
         "overall_confidence": {"type": "number"},
     },
     "required": ["candidate_id", "full_name"],

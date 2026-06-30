@@ -1,7 +1,7 @@
 {
   "profiles": [
     {
-      "candidate_id": "8d471758-e3c4-4661-8713-193ef41068ac",
+      "candidate_id": "18ea761b-b9ea-4fe3-9add-beb6f97f8c58",
       "full_name": "Alex Mercer",
       "emails": [
         "alex.mercer@example.com"
@@ -95,12 +95,6 @@
       "education": [
         {
           "institution": "MIT",
-          "degree": "B.S.",
-          "field": "Computer Science",
-          "end_year": 2020
-        },
-        {
-          "institution": "MIT",
           "degree": "B.S. in Computer Science",
           "field": null,
           "end_year": 2020
@@ -143,11 +137,6 @@
           "method": "regex_extracted"
         },
         {
-          "field": "education",
-          "source": "resume",
-          "method": "regex_extracted"
-        },
-        {
           "field": "full_name",
           "source": "github",
           "method": "regex_extracted"
@@ -166,6 +155,11 @@
           "field": "links.github",
           "source": "github",
           "method": "exact"
+        },
+        {
+          "field": "projects",
+          "source": "github",
+          "method": "regex_extracted"
         },
         {
           "field": "full_name",
@@ -203,10 +197,10 @@
           "method": "exact"
         }
       ],
-      "overall_confidence": 0.76
+      "overall_confidence": 0.78
     },
     {
-      "candidate_id": "ab44058c-4a95-47b4-a89c-8f5e52aa4c56",
+      "candidate_id": "b7fb25c7-84f5-4e14-8b2c-9d4b962ca121",
       "full_name": "Rahul Mehta",
       "emails": [
         "rahul.mehta@example.com"
@@ -252,7 +246,7 @@
       "overall_confidence": 0.93
     },
     {
-      "candidate_id": "1865e493-f3f9-4e80-862d-065db8df4d5c",
+      "candidate_id": "390657fb-3c1a-481c-8f25-ef6c84c64748",
       "full_name": "Aria Vance",
       "emails": [
         "aria.vance@example.com"
@@ -356,7 +350,7 @@
       "overall_confidence": 0.91
     },
     {
-      "candidate_id": "dc1a94f6-def4-44d3-9773-200619948364",
+      "candidate_id": "52251d0c-12fe-4c82-a646-bfba0e8a0a73",
       "full_name": "Hiroshi Tanaka",
       "emails": [
         "hiroshi.tanaka@example.com"
@@ -467,7 +461,7 @@
       "overall_confidence": 0.91
     },
     {
-      "candidate_id": "bbc39f4c-4df1-42a7-ac32-951adaa53c8d",
+      "candidate_id": "c5aaad5d-a958-4f7f-98c6-49b80fc40257",
       "full_name": "Elena Rostova",
       "emails": [
         "elena.rostova@example.com"
@@ -585,7 +579,7 @@
       "overall_confidence": 0.91
     },
     {
-      "candidate_id": "c6a96857-9e1b-4309-9776-28d68bb563d4",
+      "candidate_id": "cdd86157-f64e-48cb-9864-701ae0dc2c58",
       "full_name": "Mateo Silva",
       "emails": [
         "mateo.silva@example.com"
@@ -703,7 +697,7 @@
       "overall_confidence": 0.91
     },
     {
-      "candidate_id": "4864e84f-9f27-47d7-8b4d-a3e60e946297",
+      "candidate_id": "1715e9bd-332d-46fd-b1cf-81c456ee2a0f",
       "full_name": "Zara Patel",
       "emails": [
         "zara.patel@example.com"
@@ -821,7 +815,7 @@
       "overall_confidence": 0.91
     },
     {
-      "candidate_id": "3c4dc6d0-5821-4160-9b6b-46c528a8cc94",
+      "candidate_id": "99983969-f279-454d-83fa-ec40f3433a42",
       "full_name": "Nina Chen",
       "emails": [
         "nina.chen@example.com"
@@ -939,7 +933,7 @@
       "overall_confidence": 0.93
     },
     {
-      "candidate_id": "094bd0a7-28f1-4d9c-8e08-f339d8e06482",
+      "candidate_id": "779a54b0-d925-4d41-8061-592d58c76909",
       "full_name": "Devon Brooks",
       "emails": [
         "devon.brooks@example.com"
@@ -992,7 +986,7 @@
       "overall_confidence": 0.93
     },
     {
-      "candidate_id": "6bb991fb-a9f3-45b8-8f92-552c83048668",
+      "candidate_id": "ac263db6-1f5e-4cbc-a8aa-012439d3c663",
       "full_name": "Omar Farooq",
       "emails": [
         "omar.farooq@example.com"
@@ -1045,7 +1039,7 @@
       "overall_confidence": 0.93
     },
     {
-      "candidate_id": "eec88e08-4b66-4d7f-b7ea-4633fcbb0593",
+      "candidate_id": "683319f9-ce7d-4598-b98d-e2f336861b78",
       "full_name": "Sarah Jenkins",
       "emails": [
         "sarah.jenkins@example.com"
@@ -1091,7 +1085,7 @@
       "overall_confidence": 0.93
     },
     {
-      "candidate_id": "437cb136-8d7b-4eb5-95ea-01352fadd90b",
+      "candidate_id": "dc4c16f0-213c-4850-b7e0-d486e077260e",
       "full_name": "Chloe Dupont",
       "emails": [
         "chloe.dupont@example.com"
@@ -1146,62 +1140,62 @@
   ],
   "validation": [
     {
-      "candidate_id": "8d471758-e3c4-4661-8713-193ef41068ac",
+      "candidate_id": "18ea761b-b9ea-4fe3-9add-beb6f97f8c58",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "ab44058c-4a95-47b4-a89c-8f5e52aa4c56",
+      "candidate_id": "b7fb25c7-84f5-4e14-8b2c-9d4b962ca121",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "1865e493-f3f9-4e80-862d-065db8df4d5c",
+      "candidate_id": "390657fb-3c1a-481c-8f25-ef6c84c64748",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "dc1a94f6-def4-44d3-9773-200619948364",
+      "candidate_id": "52251d0c-12fe-4c82-a646-bfba0e8a0a73",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "bbc39f4c-4df1-42a7-ac32-951adaa53c8d",
+      "candidate_id": "c5aaad5d-a958-4f7f-98c6-49b80fc40257",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "c6a96857-9e1b-4309-9776-28d68bb563d4",
+      "candidate_id": "cdd86157-f64e-48cb-9864-701ae0dc2c58",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "4864e84f-9f27-47d7-8b4d-a3e60e946297",
+      "candidate_id": "1715e9bd-332d-46fd-b1cf-81c456ee2a0f",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "3c4dc6d0-5821-4160-9b6b-46c528a8cc94",
+      "candidate_id": "99983969-f279-454d-83fa-ec40f3433a42",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "094bd0a7-28f1-4d9c-8e08-f339d8e06482",
+      "candidate_id": "779a54b0-d925-4d41-8061-592d58c76909",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "6bb991fb-a9f3-45b8-8f92-552c83048668",
+      "candidate_id": "ac263db6-1f5e-4cbc-a8aa-012439d3c663",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "eec88e08-4b66-4d7f-b7ea-4633fcbb0593",
+      "candidate_id": "683319f9-ce7d-4598-b98d-e2f336861b78",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "437cb136-8d7b-4eb5-95ea-01352fadd90b",
+      "candidate_id": "dc4c16f0-213c-4850-b7e0-d486e077260e",
       "valid": true,
       "errors": []
     }
