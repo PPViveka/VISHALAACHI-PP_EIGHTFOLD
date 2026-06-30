@@ -83,6 +83,12 @@ Open **`http://localhost:5000`** in your browser.
 * Matches candidates using nicknames or spelling variations (e.g. `Alexander Mercer` vs `Alex Mercer`) across sources when emails are missing.
 * Last names must match exactly, and first names must match or share a common prefix (minimum 3 characters), avoiding matching unrelated candidates (e.g., `John` and `Jane`).
 
+### 3. Unicode NFKC Normalization
+* Standardizes unicode characters and diacritics using the `NFKC` standard. This ensures characters parsed differently across environments (e.g., NFD accents vs NFC composites in names like `François`) resolve to identical strings.
+
+### 4. Experience & Company Deduplication
+* Merges overlapping positions at the same company (e.g. `Software Developer` at `Google Inc.` vs `Software Engineer` at `Google`) by stripping trailing punctuation and common suffixes (like `LLC` or `Inc.`).
+
 ---
 
 ## Automated Tests
@@ -91,4 +97,4 @@ Run the test suite:
 ```bash
 pytest tests/ -v
 ```
-Contains **28 unit tests** covering normalization, extraction failures, multi-source merging, confidence scoring models, custom projections, dynamic schema compliance, name variations, and experience calculation.
+Contains **30 unit tests** covering normalization, extraction robustness, multi-source merging, custom configurations, dynamic schemas, name nickname fuzzy logic, interval calculations, role deduplications, and Unicode diacritics.
