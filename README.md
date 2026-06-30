@@ -98,3 +98,12 @@ Run the test suite:
 pytest tests/ -v
 ```
 Contains **30 unit tests** covering normalization, extraction robustness, multi-source merging, custom configurations, dynamic schemas, name nickname fuzzy logic, interval calculations, role deduplications, and Unicode diacritics.
+
+---
+
+## Pre-Generated Sample Outputs
+
+The pipeline has been run on all sample inputs to produce pre-generated outputs, which are checked into the repository:
+* **[default_output.json](sample_output/default_output.json)**: The complete resolved profile records for all 12 candidates, generated using the default configuration (which includes full confidence scores and detailed field-level provenances).
+* **[custom_output.json](sample_output/custom_output.json)**: A customized, reshaped profile subset containing only selected and renamed fields, demonstrating the runtime projection engine.
+
