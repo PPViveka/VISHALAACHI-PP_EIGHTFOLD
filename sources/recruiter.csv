@@ -1,0 +1,4 @@
+name,email,phone,current_company,title
+Alex Mercer,alex.mercer@example.com,+1 415-555-0182,Acme Corp,Software Engineer
+,bademail,,,
+Rahul Mehta,rahul.mehta@example.com,9876543210,Globex Inc,Data Analyst

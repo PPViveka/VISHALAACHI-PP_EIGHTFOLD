@@ -1,0 +1,21 @@
+# Compiled Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest cache
+.pytest_cache/
+
+# Development folders & logs
+temp_uploads/
+*.log
+
+# Exclude assignment PDFs and detailed design write-ups as requested
+*.pdf
+docs/*.pdf
+
+# IDEs & System files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

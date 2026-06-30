@@ -1,0 +1,119 @@
+[
+  {
+    "candidateName": "Aria Vance",
+    "emailAddress": "aria.vance@example.com",
+    "telephoneNumber": "+1 206-555-0143",
+    "currentEmployer": "DeepMind",
+    "jobTitle": "Lead Research Scientist",
+    "techSkills": [
+      "Python",
+      "PyTorch",
+      "Deep Learning",
+      "Reinforcement Learning",
+      "TensorFlow"
+    ],
+    "experience": [
+      {
+        "companyName": "DeepMind",
+        "roleTitle": "Research Scientist",
+        "startDate": "2021-10",
+        "endDate": "Present"
+      }
+    ]
+  },
+  {
+    "candidateName": "Hiroshi Tanaka",
+    "emailAddress": "hiroshi.tanaka@example.com",
+    "telephoneNumber": "+81 90-5555-0182",
+    "currentEmployer": "CloudTech Corp",
+    "jobTitle": "Lead Solutions Architect",
+    "techSkills": [
+      "AWS",
+      "Cloud Security",
+      "Kubernetes",
+      "Terraform",
+      "Go",
+      "Docker"
+    ],
+    "experience": [
+      {
+        "companyName": "CloudTech Corp",
+        "roleTitle": "Solutions Architect",
+        "startDate": "2020-03",
+        "endDate": "Present"
+      }
+    ]
+  },
+  {
+    "candidateName": "Elena Rostova",
+    "emailAddress": "elena.rostova@example.com",
+    "telephoneNumber": "+7 901-555-0174",
+    "currentEmployer": "Yandex",
+    "jobTitle": "Lead Senior Frontend Engineer",
+    "techSkills": [
+      "React",
+      "TypeScript",
+      "CSS",
+      "Webpack",
+      "Node.js",
+      "JavaScript",
+      "HTML"
+    ],
+    "experience": [
+      {
+        "companyName": "Yandex",
+        "roleTitle": "Senior Frontend Engineer",
+        "startDate": "2019-06",
+        "endDate": "Present"
+      }
+    ]
+  },
+  {
+    "candidateName": "Mateo Silva",
+    "emailAddress": "mateo.silva@example.com",
+    "telephoneNumber": "+55 11-98765-4321",
+    "currentEmployer": "Itau Unibanco",
+    "jobTitle": "Lead Senior Java Developer",
+    "techSkills": [
+      "Java",
+      "Spring Boot",
+      "Microservices",
+      "Kafka",
+      "PostgreSQL",
+      "SQL",
+      "Docker"
+    ],
+    "experience": [
+      {
+        "companyName": "Itau Unibanco",
+        "roleTitle": "Senior Java Developer",
+        "startDate": "2018-02",
+        "endDate": "Present"
+      }
+    ]
+  },
+  {
+    "candidateName": "Zara Patel",
+    "emailAddress": "zara.patel@example.com",
+    "telephoneNumber": "+91 98765 01234",
+    "currentEmployer": "Reliance Jio",
+    "jobTitle": "Lead DevOps Architect",
+    "techSkills": [
+      "Docker",
+      "Kubernetes",
+      "Jenkins",
+      "Ansible",
+      "Linux",
+      "Prometheus",
+      "AWS"
+    ],
+    "experience": [
+      {
+        "companyName": "Reliance Jio",
+        "roleTitle": "DevOps Architect",
+        "startDate": "2021-04",
+        "endDate": "Present"
+      }
+    ]
+  }
+]

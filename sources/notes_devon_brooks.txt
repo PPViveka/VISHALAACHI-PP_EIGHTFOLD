@@ -1,0 +1,10 @@
+Candidate Name: Devon Brooks
+Email: devon.brooks@example.com
+Phone: +1 512-555-0199
+Current role: Fullstack Developer at Atlassian
+
+Recruiter Feedback Notes:
+Devon Brooks has been vetted.
+Headline: Fullstack Developer building collaborative user platforms
+Technologies: JavaScript, React, Node.js, PostgreSQL, AWS, Git
+Overall, very strong candidate matching our core parameters.

@@ -1,0 +1,10 @@
+Candidate Name: Alex Mercer
+Email: alex.mercer@example.com
+Phone: +1 415-555-0182
+Current role: Senior Software Engineer at Acme Corp
+
+Recruiter Feedback Notes:
+Alex has strong skills in Python and Go.
+Technologies: Python, Go, Docker, Kubernetes, SQL, AWS, Git
+He demonstrated deep familiarity with Docker containerization and Kubernetes orchestration.
+Good communication skills during the screening.

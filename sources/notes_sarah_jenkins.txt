@@ -1,0 +1,10 @@
+Candidate Name: Sarah Jenkins
+Email: sarah.jenkins@example.com
+Phone: +44 7911 555021
+Current role: Product Manager at Monzo
+
+Recruiter Feedback Notes:
+Sarah Jenkins has been vetted.
+Headline: PM focusing on user acquisition growth engines
+Technologies: Agile, Product Strategy, Roadmap planning, SQL, Analytics, Git
+Overall, very strong candidate matching our core parameters.

@@ -1,0 +1,10 @@
+Candidate Name: Chloe Dupont
+Email: chloe.dupont@example.com
+Phone: +33 6-5555-0193
+Current role: Lead Data Scientist at Criteo
+
+Recruiter Feedback Notes:
+Chloe Dupont has been vetted.
+Headline: Data Scientist lead designing high efficiency user targeting models
+Technologies: Python, Spark, Scikit-learn, Statistics, SQL, AdTech, NumPy
+Overall, very strong candidate matching our core parameters.

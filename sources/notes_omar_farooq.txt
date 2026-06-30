@@ -1,0 +1,10 @@
+Candidate Name: Omar Farooq
+Email: omar.farooq@example.com
+Phone: +971 50-555-0182
+Current role: Database Administrator at EMAAR
+
+Recruiter Feedback Notes:
+Omar Farooq has been vetted.
+Headline: Senior DBA managing high availability database structures
+Technologies: PostgreSQL, Oracle DBA, SQL Tuning, Backup Recovery, Linux
+Overall, very strong candidate matching our core parameters.

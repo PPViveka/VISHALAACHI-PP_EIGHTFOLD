@@ -1,0 +1,14 @@
+Jane Smith
+jane.smith@example.com
+415-555-1234
+Headline: Frontend Architect specializing in React and modern design systems
+
+Skills
+React, JavaScript, CSS, HTML, TypeScript, Git
+
+Experience
+Vercel - Frontend Architect (Jan 2023 - Present)
+NextJS Devs - UI Developer (Jul 2020 - Dec 2022)
+
+Education
+B.S. in Design, UC Berkeley, 2020

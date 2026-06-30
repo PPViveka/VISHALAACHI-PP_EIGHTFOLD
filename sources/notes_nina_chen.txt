@@ -1,0 +1,10 @@
+Candidate Name: Nina Chen
+Email: nina.chen@example.com
+Phone: +86 139-5555-0164
+Current role: Security Engineer at Tencent
+
+Recruiter Feedback Notes:
+Nina Chen has been vetted.
+Headline: Security Analyst focusing on secure code auditing and threat modeling
+Technologies: Application Security, Pentesting, Cryptography, Python, Go, Linux
+Overall, very strong candidate matching our core parameters.

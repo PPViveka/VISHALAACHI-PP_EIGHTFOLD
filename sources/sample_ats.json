@@ -1,0 +1,16 @@
+{
+  "candidateName": "Alex Mercer",
+  "emailAddress": "alex.mercer@example.com",
+  "telephoneNumber": "+1 415-555-0182",
+  "currentEmployer": "Acme Corp",
+  "jobTitle": "Senior Software Engineer",
+  "techSkills": ["Python", "Go", "Docker", "Kubernetes", "PostgreSQL"],
+  "experience": [
+    {
+      "companyName": "Acme Corp",
+      "roleTitle": "Software Engineer",
+      "startDate": "2022-01",
+      "endDate": "Present"
+    }
+  ]
+}

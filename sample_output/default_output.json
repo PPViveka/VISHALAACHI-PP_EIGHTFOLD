@@ -1,0 +1,234 @@
+{
+  "profiles": [
+    {
+      "candidate_id": "dd95e45e-9739-4228-8cf9-1bff9e8714f5",
+      "full_name": "Alex Mercer",
+      "emails": [
+        "alex.mercer@example.com"
+      ],
+      "phones": [
+        "+14155550182"
+      ],
+      "location": null,
+      "links": {
+        "linkedin": null,
+        "github": null,
+        "portfolio": null,
+        "other": []
+      },
+      "headline": "Software Engineer passionate about backend systems",
+      "years_experience": null,
+      "skills": [
+        {
+          "name": "Python",
+          "confidence": 0.6,
+          "sources": [
+            "resume"
+          ]
+        },
+        {
+          "name": "JavaScript",
+          "confidence": 0.6,
+          "sources": [
+            "resume"
+          ]
+        },
+        {
+          "name": "React",
+          "confidence": 0.6,
+          "sources": [
+            "resume"
+          ]
+        },
+        {
+          "name": "AWS",
+          "confidence": 0.6,
+          "sources": [
+            "resume"
+          ]
+        },
+        {
+          "name": "Docker",
+          "confidence": 0.6,
+          "sources": [
+            "resume"
+          ]
+        },
+        {
+          "name": "SQL",
+          "confidence": 0.6,
+          "sources": [
+            "resume"
+          ]
+        }
+      ],
+      "experience": [
+        {
+          "company": "Acme Corp",
+          "title": "Software Engineer",
+          "start": "2022-01",
+          "end": null,
+          "summary": null
+        },
+        {
+          "company": "Globex Inc",
+          "title": "Junior Developer",
+          "start": "2020-06",
+          "end": "2021-12",
+          "summary": null
+        },
+        {
+          "company": "Acme Corp",
+          "title": "Software Engineer",
+          "start": null,
+          "end": null,
+          "summary": null
+        }
+      ],
+      "education": [
+        {
+          "institution": "MIT",
+          "degree": "B.S.",
+          "field": "Computer Science",
+          "end_year": 2020
+        }
+      ],
+      "provenance": [
+        {
+          "field": "full_name",
+          "source": "resume",
+          "method": "regex_extracted"
+        },
+        {
+          "field": "emails",
+          "source": "resume",
+          "method": "regex_extracted"
+        },
+        {
+          "field": "phones",
+          "source": "resume",
+          "method": "regex_extracted"
+        },
+        {
+          "field": "headline",
+          "source": "resume",
+          "method": "regex_extracted"
+        },
+        {
+          "field": "skills",
+          "source": "resume",
+          "method": "regex_extracted"
+        },
+        {
+          "field": "experience",
+          "source": "resume",
+          "method": "regex_extracted"
+        },
+        {
+          "field": "experience",
+          "source": "resume",
+          "method": "regex_extracted"
+        },
+        {
+          "field": "education",
+          "source": "resume",
+          "method": "regex_extracted"
+        },
+        {
+          "field": "full_name",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "experience",
+          "source": "recruiter_csv",
+          "method": "exact"
+        }
+      ],
+      "overall_confidence": 0.8
+    },
+    {
+      "candidate_id": "c2ef9441-aa20-4c3c-9f92-0d01b4cd80a4",
+      "full_name": "Unknown",
+      "emails": null,
+      "phones": null,
+      "location": null,
+      "links": {
+        "linkedin": null,
+        "github": null,
+        "portfolio": null,
+        "other": []
+      },
+      "headline": null,
+      "years_experience": null,
+      "skills": null,
+      "experience": null,
+      "education": null,
+      "provenance": [],
+      "overall_confidence": 0.0
+    },
+    {
+      "candidate_id": "fb2071a0-d30b-468f-92bb-6fbf468ea2d1",
+      "full_name": "Rahul Mehta",
+      "emails": [
+        "rahul.mehta@example.com"
+      ],
+      "phones": null,
+      "location": null,
+      "links": {
+        "linkedin": null,
+        "github": null,
+        "portfolio": null,
+        "other": []
+      },
+      "headline": null,
+      "years_experience": null,
+      "skills": null,
+      "experience": [
+        {
+          "company": "Globex Inc",
+          "title": "Data Analyst",
+          "start": null,
+          "end": null,
+          "summary": null
+        }
+      ],
+      "education": null,
+      "provenance": [
+        {
+          "field": "full_name",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "emails",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "experience",
+          "source": "recruiter_csv",
+          "method": "exact"
+        }
+      ],
+      "overall_confidence": 0.92
+    }
+  ],
+  "validation": [
+    {
+      "candidate_id": "dd95e45e-9739-4228-8cf9-1bff9e8714f5",
+      "valid": true,
+      "errors": []
+    },
+    {
+      "candidate_id": "c2ef9441-aa20-4c3c-9f92-0d01b4cd80a4",
+      "valid": true,
+      "errors": []
+    },
+    {
+      "candidate_id": "fb2071a0-d30b-468f-92bb-6fbf468ea2d1",
+      "valid": true,
+      "errors": []
+    }
+  ]
+}

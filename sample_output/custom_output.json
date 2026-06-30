@@ -1,0 +1,49 @@
+{
+  "profiles": [
+    {
+      "full_name": "Alex Mercer",
+      "primary_email": "alex.mercer@example.com",
+      "phone": "+14155550182",
+      "top_skills": [
+        "Python",
+        "JavaScript",
+        "React",
+        "AWS",
+        "Docker",
+        "SQL"
+      ],
+      "overall_confidence": 0.8
+    },
+    {
+      "full_name": "Unknown",
+      "primary_email": null,
+      "phone": null,
+      "top_skills": null,
+      "overall_confidence": 0.0
+    },
+    {
+      "full_name": "Rahul Mehta",
+      "primary_email": "rahul.mehta@example.com",
+      "phone": null,
+      "top_skills": null,
+      "overall_confidence": 0.92
+    }
+  ],
+  "validation": [
+    {
+      "candidate_id": null,
+      "valid": true,
+      "errors": []
+    },
+    {
+      "candidate_id": null,
+      "valid": true,
+      "errors": []
+    },
+    {
+      "candidate_id": null,
+      "valid": true,
+      "errors": []
+    }
+  ]
+}
