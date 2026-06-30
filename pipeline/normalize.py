@@ -7,6 +7,7 @@ Never raises on bad input -- always degrades to None.
 """
 
 import re
+import unicodedata
 from datetime import datetime
 
 try:
@@ -21,8 +22,15 @@ from .schema import SKILL_ALIASES
 DEFAULT_REGION = "US"  # used as a fallback hint for phone parsing only
 
 
+def _clean_unicode(s):
+    if isinstance(s, str):
+        return unicodedata.normalize('NFKC', s)
+    return s
+
+
 def normalize_phone(raw, default_region=DEFAULT_REGION):
     """Return E.164 string (e.g. +14155552671) or None."""
+    raw = _clean_unicode(raw)
     if not raw:
         return None
     raw = raw.strip()
@@ -42,6 +50,7 @@ def normalize_phone(raw, default_region=DEFAULT_REGION):
 
 
 def normalize_email(raw):
+    raw = _clean_unicode(raw)
     if not raw:
         return None
     raw = raw.strip().lower()
@@ -52,6 +61,7 @@ def normalize_email(raw):
 
 def normalize_date(raw):
     """Return YYYY-MM string or None. Handles 'Present'/'Current' as None (open-ended)."""
+    raw = _clean_unicode(raw)
     if not raw:
         return None
     raw = raw.strip()
@@ -73,6 +83,7 @@ COUNTRY_MAP = {
 
 
 def normalize_country(raw):
+    raw = _clean_unicode(raw)
     if not raw:
         return None
     key = raw.strip().lower()
@@ -82,6 +93,7 @@ def normalize_country(raw):
 def normalize_skill(raw):
     """Map a raw skill token to its canonical name. Unknown skills are
     title-cased and kept (never invented, never silently dropped)."""
+    raw = _clean_unicode(raw)
     if not raw:
         return None
     key = raw.strip().lower()
@@ -92,6 +104,7 @@ def normalize_skill(raw):
 
 
 def normalize_name(raw):
+    raw = _clean_unicode(raw)
     if not raw:
         return None
     return " ".join(w.capitalize() if not w.isupper() else w for w in raw.strip().split())

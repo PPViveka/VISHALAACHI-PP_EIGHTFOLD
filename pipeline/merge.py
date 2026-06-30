@@ -81,6 +81,75 @@ def _is_name_match(n1, n2):
     return False
 
 
+def deduplicate_experiences(experience_list):
+    """
+    Deduplicate experience entries. If two entries have the same company (normalized)
+    and overlapping dates, merge them into one entry.
+    """
+    if not experience_list:
+        return []
+
+    def clean_company(name):
+        if not name:
+            return ""
+        name = name.lower().strip()
+        # Remove punctuation
+        name = re.sub(r"[.,\/#!$%\^&\*;:{}=\-_`~()]", "", name)
+        # Remove common suffixes
+        name = re.sub(r"\b(inc|corp|ltd|co|gmbh|llc|corporation|limited)\b", "", name)
+        return re.sub(r"\s+", "", name)
+
+    def clean_title(title):
+        if not title:
+            return ""
+        title = title.lower().strip()
+        # standard replacements
+        title = title.replace("developer", "engineer").replace("dev", "engineer")
+        return re.sub(r"\s+", "", title)
+
+    # Group experiences by company + title similarity
+    unique_groups = []
+    
+    for exp in experience_list:
+        comp_clean = clean_company(exp.get("company"))
+        title_clean = clean_title(exp.get("title"))
+        
+        placed = False
+        for group in unique_groups:
+            g_comp = clean_company(group[0].get("company"))
+            g_title = clean_title(group[0].get("title"))
+            
+            if comp_clean == g_comp and (not title_clean or not g_title or title_clean == g_title or title_clean in g_title or g_title in title_clean):
+                group.append(exp)
+                placed = True
+                break
+                
+        if not placed:
+            unique_groups.append([exp])
+            
+    deduped = []
+    for group in unique_groups:
+        merged_exp = {
+            "company": next((e.get("company") for e in group if e.get("company")), None) or group[0].get("company"),
+            "title": next((e.get("title") for e in group if e.get("title")), None) or group[0].get("title"),
+            "start": None,
+            "end": None,
+            "summary": next((e.get("summary") for e in group if e.get("summary")), None),
+        }
+        
+        starts = [e.get("start") for e in group if e.get("start")]
+        ends = [e.get("end") for e in group if e.get("end")]
+        
+        if starts:
+            merged_exp["start"] = min(starts)
+        if ends:
+            merged_exp["end"] = max(ends)
+            
+        deduped.append(merged_exp)
+        
+    return deduped
+
+
 def calculate_years_experience(experience_list):
     """
     Sum the lengths of non-overlapping experience intervals.
@@ -323,6 +392,8 @@ def merge_candidate(records):
 
     canonical.setdefault("skills", canonical.get("skills", []))
     canonical.setdefault("experience", canonical.get("experience", []))
+    if canonical["experience"]:
+        canonical["experience"] = deduplicate_experiences(canonical["experience"])
     canonical.setdefault("education", canonical.get("education", []))
     canonical.setdefault("location", None)
     canonical["years_experience"] = calculate_years_experience(canonical.get("experience", []))

@@ -283,3 +283,28 @@ def test_fuzzy_name_matching():
     # recruiter_csv has higher trust, so "Alex Mercer" wins
     assert profiles[0]["full_name"] == "Alex Mercer"
 
+
+def test_deduplicate_experiences():
+    from pipeline.merge import deduplicate_experiences
+    exp_list = [
+        {"company": "Google Inc.", "title": "Software Developer", "start": "2020-01", "end": "2021-06"},
+        {"company": "Google", "title": "Software Engineer", "start": "2021-01", "end": "2022-01"}
+    ]
+    deduped = deduplicate_experiences(exp_list)
+    assert len(deduped) == 1
+    assert deduped[0]["company"] == "Google Inc."
+    assert deduped[0]["start"] == "2020-01"
+    assert deduped[0]["end"] == "2022-01"
+
+
+def test_unicode_normalization():
+    import unicodedata
+    nfd_name = unicodedata.normalize("NFD", "François")
+    nfc_name = unicodedata.normalize("NFC", "François")
+    
+    assert len(nfd_name) != len(nfc_name)
+    
+    from pipeline.normalize import normalize_name
+    assert normalize_name(nfd_name) == normalize_name(nfc_name)
+
+
