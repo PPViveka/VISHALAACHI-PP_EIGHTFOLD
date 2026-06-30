@@ -1,13 +1,14 @@
 # Multi-Source Candidate Data Transformer
 
-Ingests, merges, and projects candidate data from **six distinct structured, semi-structured, and unstructured sources** into a single canonical profile per candidate. Features automatic conflict resolution, field-level provenance tracking, weighted confidence scoring, and a runtime configuration engine that reshapes output structures dynamically.
+A configurable candidate data transformation pipeline that ingests candidate information from multiple structured and unstructured sources, normalizes and merges records into a canonical profile, tracks provenance and confidence, and dynamically reshapes output using runtime configuration.
 
 ## Supported Input Sources
-1. **Recruiter CSV Export (Structured)**: High-trust database records containing candidate names and contact info.
-2. **ATS JSON Export (Semi-Structured)**: Standard database dump matching candidate details using dynamic key mapping.
-3. **Resume Document (Unstructured)**: Parses PDF, DOCX, and TXT files using regular expressions and layout heuristics.
+Implements the required structured and unstructured source pipeline and extends it to support six data sources:
+1. **Recruiter CSV (Structured)**: High-trust database records containing candidate names and contact info.
+2. **ATS JSON (Semi-Structured)**: Standard database dump matching candidate details using dynamic key mapping.
+3. **Resume (Unstructured)**: Parses PDF, DOCX, and TXT files using regular expressions and layout heuristics.
 4. **Recruiter Notes (Unstructured)**: Extracts contact details, current role, and skills from free-text recruiter logs.
-5. **GitHub Profile URL (API integration)**: Queries the public GitHub REST API to fetch profiles, bios, and repository programming languages as skills (with offline test caches).
+5. **GitHub Profile URL (API integration)**: Queries the public GitHub REST API to fetch profiles, bios, and repository programming languages as skills.
 6. **LinkedIn Profile URL (Simulated)**: Ingests mock professional profiles mapping experience and education.
 
 ---
