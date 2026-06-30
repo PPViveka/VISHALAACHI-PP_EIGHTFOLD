@@ -631,6 +631,119 @@
       text-transform: uppercase;
       font-size: 0.7rem;
     }
+
+    @media print {
+      body {
+        background: white !important;
+        color: #0f172a !important;
+        font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      
+      .container {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      
+      header,
+      .panel:not(#output-results-panel),
+      .pipeline-visualizer,
+      .tabs,
+      .btn,
+      #copy-json-btn,
+      #export-pdf-btn,
+      #profiles-placeholder,
+      #json-tab,
+      #validation-tab,
+      textarea,
+      input,
+      select,
+      label {
+        display: none !important;
+      }
+      
+      .grid {
+        display: block !important;
+      }
+      
+      #output-results-panel {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .tab-content {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+      
+      .profile-card {
+        background: white !important;
+        border: 2px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        box-shadow: none !important;
+        color: #0f172a !important;
+        padding: 2rem !important;
+        margin-bottom: 2rem !important;
+        page-break-inside: avoid;
+      }
+      
+      .profile-header {
+        border-bottom: 2px solid #cbd5e1 !important;
+        padding-bottom: 1rem !important;
+        margin-bottom: 1rem !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+      }
+      
+      .profile-name {
+        color: #0f172a !important;
+        font-size: 1.75rem !important;
+        font-weight: 700 !important;
+      }
+      
+      .confidence-badge {
+        background: #f1f5f9 !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+      }
+
+      .profile-contact {
+        color: #475569 !important;
+        margin-bottom: 1.5rem !important;
+      }
+      
+      .section-title {
+        color: #0f172a !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        padding-bottom: 0.25rem !important;
+        margin-top: 1.5rem !important;
+        font-weight: 600 !important;
+      }
+      
+      .skill-tag {
+        background: #f8fafc !important;
+        color: #0f172a !important;
+        border: 1px solid #e2e8f0 !important;
+      }
+      
+      .provenance-table th {
+        color: #475569 !important;
+        border-bottom: 2px solid #cbd5e1 !important;
+      }
+      
+      .provenance-table td {
+        color: #334155 !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -739,7 +852,7 @@
         </div>
 
         <!-- Output Tabs Panel -->
-        <div class="panel" style="min-height: 600px;">
+        <div class="panel" id="output-results-panel" style="min-height: 600px;">
           <div class="tabs">
             <button class="tab active" data-tab="canonical-tab">Canonical Profiles</button>
             <button class="tab" data-tab="json-tab">Projected JSON</button>
@@ -748,6 +861,9 @@
 
           <!-- Tab Content: Canonical Profiles -->
           <div id="canonical-tab" class="tab-content active">
+            <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+              <button class="btn" id="export-pdf-btn" style="width: auto; padding: 0.5rem 1.25rem; font-size: 0.85rem; display: none; background: #10b981; margin-top: 0; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);">Export Profiles to PDF</button>
+            </div>
             <div id="profiles-placeholder" style="color: var(--text-muted); text-align: center; padding-top: 5rem;">
               Upload source files and click "Run Pipeline" to generate profiles.
             </div>
@@ -904,6 +1020,11 @@
       });
     });
 
+    // Export profiles to PDF via browser print layout
+    document.getElementById("export-pdf-btn").addEventListener("click", () => {
+      window.print();
+    });
+
     // Run pipeline flow animation highlights
     function highlightPipelineSteps() {
       const steps = ["step-detect", "step-extract", "step-normalize", "step-merge", "step-project", "step-validate"];
@@ -992,6 +1113,7 @@
       const placeholder = document.getElementById("profiles-placeholder");
       const jsonOutput = document.getElementById("json-output");
       const validationContainer = document.getElementById("validation-container");
+      const exportPdfBtn = document.getElementById("export-pdf-btn");
 
       placeholder.style.display = "none";
       profilesContainer.innerHTML = "";
@@ -1002,6 +1124,7 @@
 
       // Render projected profiles cards
       if (data.profiles && data.profiles.length > 0) {
+        exportPdfBtn.style.display = "block";
         data.profiles.forEach(profile => {
           const card = document.createElement("div");
           card.className = "profile-card";
