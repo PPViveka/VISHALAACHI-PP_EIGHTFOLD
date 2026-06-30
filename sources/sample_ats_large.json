@@ -12,6 +12,16 @@
       "Reinforcement Learning",
       "TensorFlow"
     ],
+    "certifications": ["TensorFlow Developer Certificate"],
+    "languages": ["English", "French"],
+    "projects": [
+      {
+        "name": "rl-maze-solver",
+        "description": "Solving complex mazes with Reinforcement Learning algorithms",
+        "url": "https://github.com/ariavance/rl-maze-solver",
+        "primary_language": "Python"
+      }
+    ],
     "experience": [
       {
         "companyName": "DeepMind",
@@ -34,6 +44,16 @@
       "Terraform",
       "Go",
       "Docker"
+    ],
+    "certifications": ["AWS Solutions Architect Professional"],
+    "languages": ["Japanese", "English"],
+    "projects": [
+      {
+        "name": "terraform-aws-secure-vpc",
+        "description": "Opinionated Terraform module to deploy secure VPCs",
+        "url": "https://github.com/hiroshitanaka/terraform-aws-secure-vpc",
+        "primary_language": "HCL"
+      }
     ],
     "experience": [
       {
@@ -59,6 +79,16 @@
       "JavaScript",
       "HTML"
     ],
+    "certifications": ["Certified Scrum Master"],
+    "languages": ["Russian", "English"],
+    "projects": [
+      {
+        "name": "react-virtualized-grid",
+        "description": "Ultra fast React component for rendering large tabular datasets",
+        "url": "https://github.com/elenarostova/react-virtualized-grid",
+        "primary_language": "TypeScript"
+      }
+    ],
     "experience": [
       {
         "companyName": "Yandex",
@@ -83,6 +113,16 @@
       "SQL",
       "Docker"
     ],
+    "certifications": ["Oracle Certified Professional Java SE"],
+    "languages": ["Portuguese", "English"],
+    "projects": [
+      {
+        "name": "spring-boot-event-driven",
+        "description": "Event-driven banking API using Spring Boot and Kafka",
+        "url": "https://github.com/mateosilva/spring-boot-event-driven",
+        "primary_language": "Java"
+      }
+    ],
     "experience": [
       {
         "companyName": "Itau Unibanco",
@@ -106,6 +146,16 @@
       "Linux",
       "Prometheus",
       "AWS"
+    ],
+    "certifications": ["AWS DevOps Engineer Professional", "Certified Kubernetes Administrator"],
+    "languages": ["English", "Gujarati", "Hindi"],
+    "projects": [
+      {
+        "name": "kubernetes-monitoring-stack",
+        "description": "Prometheus/Grafana setup for enterprise clusters",
+        "url": "https://github.com/zarapatel/kubernetes-monitoring",
+        "primary_language": "YAML"
+      }
     ],
     "experience": [
       {

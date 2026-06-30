@@ -249,6 +249,12 @@ def match_records(raw_records):
     return buckets
 
 
+def _add_provenance(provenance, field, source, method):
+    entry = {"field": field, "source": source, "method": method}
+    if entry not in provenance:
+        provenance.append(entry)
+
+
 def _add_field(canonical, provenance, confidences, field, value, source, method, conflict=False):
     if value in (None, "", [], {}):
         return
@@ -256,7 +262,7 @@ def _add_field(canonical, provenance, confidences, field, value, source, method,
     if conflict:
         base = max(0.05, base - 0.15)
     canonical[field] = value
-    provenance.append({"field": field, "source": source, "method": method})
+    _add_provenance(provenance, field, source, method)
     confidences[field] = round(min(0.99, base), 2)
 
 
@@ -301,14 +307,14 @@ def merge_candidate(records):
             email = N.normalize_email(rec["email"])
             if email and email not in emails:
                 emails.append(email)
-                provenance.append({"field": "emails", "source": source, "method": method})
+                _add_provenance(provenance, "emails", source, method)
 
         # 3. Phone
         if rec.get("phone"):
             phone = N.normalize_phone(rec["phone"])
             if phone and phone not in phones:
                 phones.append(phone)
-                provenance.append({"field": "phones", "source": source, "method": "normalized" if is_structured else "regex_extracted"})
+                _add_provenance(provenance, "phones", source, "normalized" if is_structured else "regex_extracted")
 
         # 4. Headline
         if rec.get("headline"):
@@ -329,7 +335,7 @@ def merge_candidate(records):
                     "end": None,
                     "summary": None,
                 })
-                provenance.append({"field": "experience", "source": source, "method": method})
+                _add_provenance(provenance, "experience", source, method)
                 confidences["experience"] = 0.92 if source == "ats_json" else 0.9
 
         # 6. Skills
@@ -345,7 +351,7 @@ def merge_candidate(records):
                     skill_conf = 0.85 if is_structured else 0.6
                     skill_objs.append({"name": name_norm, "confidence": skill_conf, "sources": [source]})
                     existing.add(name_norm)
-            provenance.append({"field": "skills", "source": source, "method": method})
+            _add_provenance(provenance, "skills", source, method)
 
         # 7. Experience List
         for exp in rec.get("experience_raw", []):
@@ -357,7 +363,7 @@ def merge_candidate(records):
                 "summary": (exp.get("summary") or "").strip() or None,
             }
             canonical.setdefault("experience", []).append(entry)
-            provenance.append({"field": "experience", "source": source, "method": method})
+            _add_provenance(provenance, "experience", source, method)
             confidences["experience"] = min(confidences.get("experience", 1.0), 0.85 if is_structured else 0.6)
 
         # 8. Education List
@@ -370,18 +376,18 @@ def merge_candidate(records):
                 "end_year": int(end_yr) if end_yr and str(end_yr).isdigit() else None,
             }
             canonical.setdefault("education", []).append(entry)
-            provenance.append({"field": "education", "source": source, "method": method})
+            _add_provenance(provenance, "education", source, method)
             confidences["education"] = min(confidences.get("education", 1.0), 0.85 if is_structured else 0.6)
 
         # 9. Link: GitHub
         if rec.get("github_url"):
             canonical["links"]["github"] = rec["github_url"]
-            provenance.append({"field": "links.github", "source": source, "method": "exact"})
+            _add_provenance(provenance, "links.github", source, "exact")
 
         # 10. Link: LinkedIn
         if rec.get("linkedin_url"):
             canonical["links"]["linkedin"] = rec["linkedin_url"]
-            provenance.append({"field": "links.linkedin", "source": source, "method": "exact"})
+            _add_provenance(provenance, "links.linkedin", source, "exact")
 
         # 11. Certifications
         if rec.get("certifications"):
@@ -392,7 +398,7 @@ def merge_candidate(records):
             for c in certs:
                 if c not in canonical_certs:
                     canonical_certs.append(c)
-            provenance.append({"field": "certifications", "source": source, "method": method})
+            _add_provenance(provenance, "certifications", source, method)
             confidences["certifications"] = 0.85 if is_structured else 0.6
 
         # 12. Languages
@@ -405,7 +411,7 @@ def merge_candidate(records):
                 l_norm = l.title().strip()
                 if l_norm not in canonical_langs:
                     canonical_langs.append(l_norm)
-            provenance.append({"field": "languages", "source": source, "method": method})
+            _add_provenance(provenance, "languages", source, method)
             confidences["languages"] = 0.85 if is_structured else 0.6
 
         # 13. Projects
@@ -421,7 +427,7 @@ def merge_candidate(records):
                         "url": p.get("url") or None,
                         "primary_language": p.get("primary_language") or None
                     })
-            provenance.append({"field": "projects", "source": source, "method": method})
+            _add_provenance(provenance, "projects", source, method)
             confidences["projects"] = 0.9 if source == "github" else (0.85 if is_structured else 0.6)
 
     if emails:

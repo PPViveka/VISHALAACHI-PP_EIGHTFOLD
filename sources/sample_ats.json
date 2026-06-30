@@ -5,6 +5,16 @@
   "currentEmployer": "Acme Corp",
   "jobTitle": "Senior Software Engineer",
   "techSkills": ["Python", "Go", "Docker", "Kubernetes", "PostgreSQL"],
+  "certifications": ["AWS Certified Solutions Architect", "Certified Scrum Master"],
+  "languages": ["English", "Spanish"],
+  "projects": [
+    {
+      "name": "fastapi-boilerplate",
+      "description": "High-performance template for APIs",
+      "url": "https://github.com/alexmercer/fastapi-boilerplate",
+      "primary_language": "Python"
+    }
+  ],
   "experience": [
     {
       "companyName": "Acme Corp",

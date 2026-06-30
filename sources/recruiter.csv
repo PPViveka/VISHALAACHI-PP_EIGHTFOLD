@@ -1,4 +1,4 @@
-name,email,phone,current_company,title
-Alex Mercer,alex.mercer@example.com,+1 415-555-0182,Acme Corp,Software Engineer
+name,email,phone,current_company,title,certifications,languages
+Alex Mercer,alex.mercer@example.com,+1 415-555-0182,Acme Corp,Software Engineer,"AWS Certified Solutions Architect, Certified Scrum Master","English, Spanish"
 ,bademail,,,
-Rahul Mehta,rahul.mehta@example.com,9876543210,Globex Inc,Data Analyst
+Rahul Mehta,rahul.mehta@example.com,9876543210,Globex Inc,Data Analyst,"Google Data Analytics Certificate","English, Hindi"

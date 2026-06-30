@@ -14,14 +14,14 @@
         "Go",
         "Git"
       ],
-      "overall_confidence": 0.78
+      "overall_confidence": 0.79
     },
     {
       "full_name": "Rahul Mehta",
       "primary_email": "rahul.mehta@example.com",
       "phone": null,
       "top_skills": null,
-      "overall_confidence": 0.93
+      "overall_confidence": 0.9
     },
     {
       "full_name": "Aria Vance",
@@ -34,7 +34,7 @@
         "Reinforcement Learning",
         "TensorFlow"
       ],
-      "overall_confidence": 0.91
+      "overall_confidence": 0.89
     },
     {
       "full_name": "Hiroshi Tanaka",
@@ -48,7 +48,7 @@
         "Go",
         "Docker"
       ],
-      "overall_confidence": 0.91
+      "overall_confidence": 0.89
     },
     {
       "full_name": "Elena Rostova",
@@ -63,7 +63,7 @@
         "JavaScript",
         "HTML"
       ],
-      "overall_confidence": 0.91
+      "overall_confidence": 0.89
     },
     {
       "full_name": "Mateo Silva",
@@ -78,7 +78,7 @@
         "SQL",
         "Docker"
       ],
-      "overall_confidence": 0.91
+      "overall_confidence": 0.89
     },
     {
       "full_name": "Zara Patel",
@@ -93,7 +93,7 @@
         "Prometheus",
         "AWS"
       ],
-      "overall_confidence": 0.91
+      "overall_confidence": 0.89
     },
     {
       "full_name": "Nina Chen",
@@ -107,35 +107,35 @@
         "Go",
         "Linux"
       ],
-      "overall_confidence": 0.93
+      "overall_confidence": 0.9
     },
     {
       "full_name": "Devon Brooks",
       "primary_email": "devon.brooks@example.com",
       "phone": "+15125550199",
       "top_skills": null,
-      "overall_confidence": 0.93
+      "overall_confidence": 0.9
     },
     {
       "full_name": "Omar Farooq",
       "primary_email": "omar.farooq@example.com",
       "phone": "+971505550182",
       "top_skills": null,
-      "overall_confidence": 0.93
+      "overall_confidence": 0.9
     },
     {
       "full_name": "Sarah Jenkins",
       "primary_email": "sarah.jenkins@example.com",
       "phone": null,
       "top_skills": null,
-      "overall_confidence": 0.93
+      "overall_confidence": 0.9
     },
     {
       "full_name": "Chloe Dupont",
       "primary_email": "chloe.dupont@example.com",
       "phone": "+33655550193",
       "top_skills": null,
-      "overall_confidence": 0.93
+      "overall_confidence": 0.9
     }
   ],
   "validation": [

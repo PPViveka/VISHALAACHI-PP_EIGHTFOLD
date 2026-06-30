@@ -1,7 +1,7 @@
 {
   "profiles": [
     {
-      "candidate_id": "18ea761b-b9ea-4fe3-9add-beb6f97f8c58",
+      "candidate_id": "0e809b1d-e296-4e7a-8148-7a78e9180806",
       "full_name": "Alex Mercer",
       "emails": [
         "alex.mercer@example.com"
@@ -132,11 +132,6 @@
           "method": "regex_extracted"
         },
         {
-          "field": "experience",
-          "source": "resume",
-          "method": "regex_extracted"
-        },
-        {
           "field": "full_name",
           "source": "github",
           "method": "regex_extracted"
@@ -177,11 +172,6 @@
           "method": "regex_extracted"
         },
         {
-          "field": "experience",
-          "source": "linkedin",
-          "method": "regex_extracted"
-        },
-        {
           "field": "education",
           "source": "linkedin",
           "method": "regex_extracted"
@@ -195,12 +185,22 @@
           "field": "full_name",
           "source": "recruiter_csv",
           "method": "exact"
+        },
+        {
+          "field": "certifications",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "recruiter_csv",
+          "method": "exact"
         }
       ],
-      "overall_confidence": 0.78
+      "overall_confidence": 0.79
     },
     {
-      "candidate_id": "b7fb25c7-84f5-4e14-8b2c-9d4b962ca121",
+      "candidate_id": "b132ff30-48b1-4da2-b256-9a852d72e875",
       "full_name": "Rahul Mehta",
       "emails": [
         "rahul.mehta@example.com"
@@ -241,12 +241,22 @@
           "field": "experience",
           "source": "recruiter_csv",
           "method": "exact"
+        },
+        {
+          "field": "certifications",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "recruiter_csv",
+          "method": "exact"
         }
       ],
-      "overall_confidence": 0.93
+      "overall_confidence": 0.9
     },
     {
-      "candidate_id": "390657fb-3c1a-481c-8f25-ef6c84c64748",
+      "candidate_id": "15cba677-4f83-47b8-9d7e-cc650ee57b52",
       "full_name": "Aria Vance",
       "emails": [
         "aria.vance@example.com"
@@ -337,7 +347,17 @@
           "method": "exact"
         },
         {
-          "field": "experience",
+          "field": "certifications",
+          "source": "ats_json",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "ats_json",
+          "method": "exact"
+        },
+        {
+          "field": "projects",
           "source": "ats_json",
           "method": "exact"
         },
@@ -345,12 +365,22 @@
           "field": "full_name",
           "source": "recruiter_csv",
           "method": "exact"
+        },
+        {
+          "field": "certifications",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "recruiter_csv",
+          "method": "exact"
         }
       ],
-      "overall_confidence": 0.91
+      "overall_confidence": 0.89
     },
     {
-      "candidate_id": "52251d0c-12fe-4c82-a646-bfba0e8a0a73",
+      "candidate_id": "91e2b5bd-b1ab-485b-ad01-61db47fe551c",
       "full_name": "Hiroshi Tanaka",
       "emails": [
         "hiroshi.tanaka@example.com"
@@ -448,7 +478,17 @@
           "method": "exact"
         },
         {
-          "field": "experience",
+          "field": "certifications",
+          "source": "ats_json",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "ats_json",
+          "method": "exact"
+        },
+        {
+          "field": "projects",
           "source": "ats_json",
           "method": "exact"
         },
@@ -456,12 +496,22 @@
           "field": "full_name",
           "source": "recruiter_csv",
           "method": "exact"
+        },
+        {
+          "field": "certifications",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "recruiter_csv",
+          "method": "exact"
         }
       ],
-      "overall_confidence": 0.91
+      "overall_confidence": 0.89
     },
     {
-      "candidate_id": "c5aaad5d-a958-4f7f-98c6-49b80fc40257",
+      "candidate_id": "4f69a076-046e-45d3-8ca1-62db714f490f",
       "full_name": "Elena Rostova",
       "emails": [
         "elena.rostova@example.com"
@@ -566,7 +616,17 @@
           "method": "exact"
         },
         {
-          "field": "experience",
+          "field": "certifications",
+          "source": "ats_json",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "ats_json",
+          "method": "exact"
+        },
+        {
+          "field": "projects",
           "source": "ats_json",
           "method": "exact"
         },
@@ -574,12 +634,22 @@
           "field": "full_name",
           "source": "recruiter_csv",
           "method": "exact"
+        },
+        {
+          "field": "certifications",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "recruiter_csv",
+          "method": "exact"
         }
       ],
-      "overall_confidence": 0.91
+      "overall_confidence": 0.89
     },
     {
-      "candidate_id": "cdd86157-f64e-48cb-9864-701ae0dc2c58",
+      "candidate_id": "57ac7130-19c3-40d2-84a1-39218c8196ce",
       "full_name": "Mateo Silva",
       "emails": [
         "mateo.silva@example.com"
@@ -684,7 +754,17 @@
           "method": "exact"
         },
         {
-          "field": "experience",
+          "field": "certifications",
+          "source": "ats_json",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "ats_json",
+          "method": "exact"
+        },
+        {
+          "field": "projects",
           "source": "ats_json",
           "method": "exact"
         },
@@ -692,12 +772,22 @@
           "field": "full_name",
           "source": "recruiter_csv",
           "method": "exact"
+        },
+        {
+          "field": "certifications",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "recruiter_csv",
+          "method": "exact"
         }
       ],
-      "overall_confidence": 0.91
+      "overall_confidence": 0.89
     },
     {
-      "candidate_id": "1715e9bd-332d-46fd-b1cf-81c456ee2a0f",
+      "candidate_id": "7fab772c-66bc-4beb-b294-111bafdfc20b",
       "full_name": "Zara Patel",
       "emails": [
         "zara.patel@example.com"
@@ -802,7 +892,17 @@
           "method": "exact"
         },
         {
-          "field": "experience",
+          "field": "certifications",
+          "source": "ats_json",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "ats_json",
+          "method": "exact"
+        },
+        {
+          "field": "projects",
           "source": "ats_json",
           "method": "exact"
         },
@@ -810,12 +910,22 @@
           "field": "full_name",
           "source": "recruiter_csv",
           "method": "exact"
+        },
+        {
+          "field": "certifications",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "recruiter_csv",
+          "method": "exact"
         }
       ],
-      "overall_confidence": 0.91
+      "overall_confidence": 0.89
     },
     {
-      "candidate_id": "99983969-f279-454d-83fa-ec40f3433a42",
+      "candidate_id": "5283ac8d-70dc-44e0-8512-eb78d2564dcf",
       "full_name": "Nina Chen",
       "emails": [
         "nina.chen@example.com"
@@ -928,12 +1038,22 @@
           "field": "experience",
           "source": "recruiter_csv",
           "method": "exact"
+        },
+        {
+          "field": "certifications",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "recruiter_csv",
+          "method": "exact"
         }
       ],
-      "overall_confidence": 0.93
+      "overall_confidence": 0.9
     },
     {
-      "candidate_id": "779a54b0-d925-4d41-8061-592d58c76909",
+      "candidate_id": "5070f4fa-525e-47b3-94be-cabc7d354273",
       "full_name": "Devon Brooks",
       "emails": [
         "devon.brooks@example.com"
@@ -981,12 +1101,22 @@
           "field": "experience",
           "source": "recruiter_csv",
           "method": "exact"
+        },
+        {
+          "field": "certifications",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "recruiter_csv",
+          "method": "exact"
         }
       ],
-      "overall_confidence": 0.93
+      "overall_confidence": 0.9
     },
     {
-      "candidate_id": "ac263db6-1f5e-4cbc-a8aa-012439d3c663",
+      "candidate_id": "9013fa6d-34d8-4c93-af23-3e67e5f35252",
       "full_name": "Omar Farooq",
       "emails": [
         "omar.farooq@example.com"
@@ -1034,12 +1164,22 @@
           "field": "experience",
           "source": "recruiter_csv",
           "method": "exact"
+        },
+        {
+          "field": "certifications",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "recruiter_csv",
+          "method": "exact"
         }
       ],
-      "overall_confidence": 0.93
+      "overall_confidence": 0.9
     },
     {
-      "candidate_id": "683319f9-ce7d-4598-b98d-e2f336861b78",
+      "candidate_id": "8c0c7f7f-44ee-430b-b14e-264b6d131602",
       "full_name": "Sarah Jenkins",
       "emails": [
         "sarah.jenkins@example.com"
@@ -1080,12 +1220,22 @@
           "field": "experience",
           "source": "recruiter_csv",
           "method": "exact"
+        },
+        {
+          "field": "certifications",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "recruiter_csv",
+          "method": "exact"
         }
       ],
-      "overall_confidence": 0.93
+      "overall_confidence": 0.9
     },
     {
-      "candidate_id": "dc4c16f0-213c-4850-b7e0-d486e077260e",
+      "candidate_id": "4db496b5-9d8c-4129-9acb-8721a30f73f4",
       "full_name": "Chloe Dupont",
       "emails": [
         "chloe.dupont@example.com"
@@ -1133,69 +1283,79 @@
           "field": "experience",
           "source": "recruiter_csv",
           "method": "exact"
+        },
+        {
+          "field": "certifications",
+          "source": "recruiter_csv",
+          "method": "exact"
+        },
+        {
+          "field": "languages",
+          "source": "recruiter_csv",
+          "method": "exact"
         }
       ],
-      "overall_confidence": 0.93
+      "overall_confidence": 0.9
     }
   ],
   "validation": [
     {
-      "candidate_id": "18ea761b-b9ea-4fe3-9add-beb6f97f8c58",
+      "candidate_id": "0e809b1d-e296-4e7a-8148-7a78e9180806",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "b7fb25c7-84f5-4e14-8b2c-9d4b962ca121",
+      "candidate_id": "b132ff30-48b1-4da2-b256-9a852d72e875",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "390657fb-3c1a-481c-8f25-ef6c84c64748",
+      "candidate_id": "15cba677-4f83-47b8-9d7e-cc650ee57b52",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "52251d0c-12fe-4c82-a646-bfba0e8a0a73",
+      "candidate_id": "91e2b5bd-b1ab-485b-ad01-61db47fe551c",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "c5aaad5d-a958-4f7f-98c6-49b80fc40257",
+      "candidate_id": "4f69a076-046e-45d3-8ca1-62db714f490f",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "cdd86157-f64e-48cb-9864-701ae0dc2c58",
+      "candidate_id": "57ac7130-19c3-40d2-84a1-39218c8196ce",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "1715e9bd-332d-46fd-b1cf-81c456ee2a0f",
+      "candidate_id": "7fab772c-66bc-4beb-b294-111bafdfc20b",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "99983969-f279-454d-83fa-ec40f3433a42",
+      "candidate_id": "5283ac8d-70dc-44e0-8512-eb78d2564dcf",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "779a54b0-d925-4d41-8061-592d58c76909",
+      "candidate_id": "5070f4fa-525e-47b3-94be-cabc7d354273",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "ac263db6-1f5e-4cbc-a8aa-012439d3c663",
+      "candidate_id": "9013fa6d-34d8-4c93-af23-3e67e5f35252",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "683319f9-ce7d-4598-b98d-e2f336861b78",
+      "candidate_id": "8c0c7f7f-44ee-430b-b14e-264b6d131602",
       "valid": true,
       "errors": []
     },
     {
-      "candidate_id": "dc4c16f0-213c-4850-b7e0-d486e077260e",
+      "candidate_id": "4db496b5-9d8c-4129-9acb-8721a30f73f4",
       "valid": true,
       "errors": []
     }

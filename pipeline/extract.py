@@ -66,6 +66,8 @@ def extract_recruiter_csv(path):
                     "phone": row.get("phone") or None,
                     "current_company": row.get("current_company") or None,
                     "title": row.get("title") or None,
+                    "certifications": [c.strip() for c in row.get("certifications", "").split(",") if c.strip()] if row.get("certifications") else None,
+                    "languages": [l.strip() for l in row.get("languages", "").split(",") if l.strip()] if row.get("languages") else None,
                 })
     except Exception as e:
         # Malformed file: degrade gracefully, return whatever we got plus a flag
@@ -206,6 +208,13 @@ def extract_ats_json(path):
                 "title": item.get("jobTitle") or item.get("title") or None,
                 "skills_raw": item.get("techSkills") or item.get("skills") or None,
             }
+            
+            if "certifications" in item and isinstance(item["certifications"], list):
+                raw_record["certifications"] = item["certifications"]
+            if "languages" in item and isinstance(item["languages"], list):
+                raw_record["languages"] = item["languages"]
+            if "projects" in item and isinstance(item["projects"], list):
+                raw_record["projects"] = item["projects"]
             
             # Map standard experience format
             if "experience" in item and isinstance(item["experience"], list):
