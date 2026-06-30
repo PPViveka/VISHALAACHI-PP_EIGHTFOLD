@@ -10,6 +10,11 @@ Implements the required structured and unstructured source pipeline and extends 
 4. **Recruiter Notes (Unstructured)**: Extracts contact details, current role, and skills from free-text recruiter logs.
 5. **GitHub Profile URL (API integration)**: Queries the public GitHub REST API to fetch profiles, bios, and repository programming languages as skills.
 6. **LinkedIn Profile URL (Simulated)**: Ingests mock professional profiles mapping experience and education.
+### Unique Canonical Schema Extensions
+In addition to standard candidate fields, the canonical profile schema has been extended to ingest, normalize, and merge:
+* **Certifications**: Extracted from unstructured resumes and mapped from ATS JSON and recruiter CSV columns.
+* **Languages**: Spoken/written language profiles mapped across sources.
+* **Projects**: Tracked across ATS/CSV databases and fetched dynamically from public GitHub repositories (including names, descriptions, URLs, and languages).
 
 ---
 
@@ -90,6 +95,10 @@ Open **`http://localhost:5000`** in your browser.
 ### 4. Experience & Company Deduplication
 * Merges overlapping positions at the same company (e.g. `Software Developer` at `Google Inc.` vs `Software Engineer` at `Google`) by stripping trailing punctuation and common suffixes (like `LLC` or `Inc.`).
 
+### 5. Provenance Log Deduplication
+* Multi-source list merging (like experience lists, certifications, or projects) can lead to duplicate provenance records from the same source file.
+* The pipeline integrates an auditing helper (`_add_provenance`) to enforce uniqueness, ensuring the candidate's provenance audit log remains clean and concise.
+
 ---
 
 ## Automated Tests
@@ -98,7 +107,7 @@ Run the test suite:
 ```bash
 pytest tests/ -v
 ```
-Contains **30 unit tests** covering normalization, extraction robustness, multi-source merging, custom configurations, dynamic schemas, name nickname fuzzy logic, interval calculations, role deduplications, and Unicode diacritics.
+Contains **31 unit tests** covering normalization, extraction robustness, multi-source merging, custom configurations, certifications, languages, projects, dynamic schemas, name nickname fuzzy logic, interval calculations, role deduplications, and Unicode diacritics.
 
 ---
 
