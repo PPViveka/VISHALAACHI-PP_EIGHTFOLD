@@ -10,26 +10,180 @@
         "React",
         "AWS",
         "Docker",
-        "SQL"
+        "SQL",
+        "Go",
+        "Git"
       ],
-      "overall_confidence": 0.8
-    },
-    {
-      "full_name": "Unknown",
-      "primary_email": null,
-      "phone": null,
-      "top_skills": null,
-      "overall_confidence": 0.0
+      "overall_confidence": 0.76
     },
     {
       "full_name": "Rahul Mehta",
       "primary_email": "rahul.mehta@example.com",
       "phone": null,
       "top_skills": null,
-      "overall_confidence": 0.92
+      "overall_confidence": 0.93
+    },
+    {
+      "full_name": "Aria Vance",
+      "primary_email": "aria.vance@example.com",
+      "phone": "+12065550143",
+      "top_skills": [
+        "Python",
+        "PyTorch",
+        "Deep Learning",
+        "Reinforcement Learning",
+        "TensorFlow"
+      ],
+      "overall_confidence": 0.91
+    },
+    {
+      "full_name": "Hiroshi Tanaka",
+      "primary_email": "hiroshi.tanaka@example.com",
+      "phone": "+819055550182",
+      "top_skills": [
+        "AWS",
+        "Cloud Security",
+        "Kubernetes",
+        "Terraform",
+        "Go",
+        "Docker"
+      ],
+      "overall_confidence": 0.91
+    },
+    {
+      "full_name": "Elena Rostova",
+      "primary_email": "elena.rostova@example.com",
+      "phone": "+79015550174",
+      "top_skills": [
+        "React",
+        "Typescript",
+        "CSS",
+        "Webpack",
+        "Node.js",
+        "JavaScript",
+        "HTML"
+      ],
+      "overall_confidence": 0.91
+    },
+    {
+      "full_name": "Mateo Silva",
+      "primary_email": "mateo.silva@example.com",
+      "phone": "+5511987654321",
+      "top_skills": [
+        "Java",
+        "Spring Boot",
+        "Microservices",
+        "Kafka",
+        "PostgreSQL",
+        "SQL",
+        "Docker"
+      ],
+      "overall_confidence": 0.91
+    },
+    {
+      "full_name": "Zara Patel",
+      "primary_email": "zara.patel@example.com",
+      "phone": "+919876501234",
+      "top_skills": [
+        "Docker",
+        "Kubernetes",
+        "Jenkins",
+        "Ansible",
+        "Linux",
+        "Prometheus",
+        "AWS"
+      ],
+      "overall_confidence": 0.91
+    },
+    {
+      "full_name": "Nina Chen",
+      "primary_email": "nina.chen@example.com",
+      "phone": "+8613955550164",
+      "top_skills": [
+        "Application Security",
+        "Pentesting",
+        "Cryptography",
+        "Python",
+        "Go",
+        "Linux"
+      ],
+      "overall_confidence": 0.93
+    },
+    {
+      "full_name": "Devon Brooks",
+      "primary_email": "devon.brooks@example.com",
+      "phone": "+15125550199",
+      "top_skills": null,
+      "overall_confidence": 0.93
+    },
+    {
+      "full_name": "Omar Farooq",
+      "primary_email": "omar.farooq@example.com",
+      "phone": "+971505550182",
+      "top_skills": null,
+      "overall_confidence": 0.93
+    },
+    {
+      "full_name": "Sarah Jenkins",
+      "primary_email": "sarah.jenkins@example.com",
+      "phone": null,
+      "top_skills": null,
+      "overall_confidence": 0.93
+    },
+    {
+      "full_name": "Chloe Dupont",
+      "primary_email": "chloe.dupont@example.com",
+      "phone": "+33655550193",
+      "top_skills": null,
+      "overall_confidence": 0.93
     }
   ],
   "validation": [
+    {
+      "candidate_id": null,
+      "valid": true,
+      "errors": []
+    },
+    {
+      "candidate_id": null,
+      "valid": true,
+      "errors": []
+    },
+    {
+      "candidate_id": null,
+      "valid": true,
+      "errors": []
+    },
+    {
+      "candidate_id": null,
+      "valid": true,
+      "errors": []
+    },
+    {
+      "candidate_id": null,
+      "valid": true,
+      "errors": []
+    },
+    {
+      "candidate_id": null,
+      "valid": true,
+      "errors": []
+    },
+    {
+      "candidate_id": null,
+      "valid": true,
+      "errors": []
+    },
+    {
+      "candidate_id": null,
+      "valid": true,
+      "errors": []
+    },
+    {
+      "candidate_id": null,
+      "valid": true,
+      "errors": []
+    },
     {
       "candidate_id": null,
       "valid": true,
